@@ -1,5 +1,21 @@
 *.py[cod]
 
+# mac cruft
+.DS_Store
+
+#emacs cruft
+*~
+*#*
+*.pyc
+*flymake.py
+.ropeproject
+
+# vim cruft
+*.swp
+
+# wing cruft
+*.wpr
+
 # C extensions
 *.so
 
@@ -33,3 +49,6 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# backup cruft
+*.old
