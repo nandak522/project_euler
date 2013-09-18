@@ -16,4 +16,4 @@ with Timer() as t:
         if (i % 3 == 0) or (i % 5 == 0):
             req.append(i)
 print 'answer:', reduce(lambda x, y: x+y,  req)
-print 'Time taken:%.03f seconds' % t.interval
+print 'Time taken:%.3f seconds' % t.interval
