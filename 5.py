@@ -6,17 +6,32 @@ What is the smallest positive number that is evenly divisible by all of the
 numbers from 1 to 20?
 '''
 
+# NOTE: To make a number divisible by 1 till 20, which means lcm of 1 till 20
+# is that number
+
+from clock import Timer
+
 MIN = 20
-divisibles = range(1,MIN+1)
-is_divisible = False
-while True:
-    for div in divisibles:
-        if MIN%div == 0:
-            is_divisible = True
-        else:
-            is_divisible = False
-            MIN += 1
-            break
-    if is_divisible:
-        print 'Number:%s' % MIN
-        break
+
+
+def gcd(a, b):
+    '''
+    Euclid's algorithm
+    '''
+    if b:
+        return gcd(b, (a % b))
+    return a
+
+
+def lcm(a, b):
+    return (a * b) / gcd(a, b)
+
+
+with Timer() as t:
+    small_positive_number = 1
+    for number in range(1, 21):
+        small_positive_number = lcm(small_positive_number, number)
+
+    print 'answer:', small_positive_number
+
+print 'Time taken:%.3f seconds' % t.interval
