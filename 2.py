@@ -8,7 +8,10 @@ By considering the terms in the Fibonacci sequence whose values do not exceed
 four million, find the sum of the even-valued terms.
 '''
 
+from clock import Timer
+
 MAX_INT = 4000000
+
 
 def compute_fibonocci(number=MAX_INT):
     a = 1
@@ -22,4 +25,8 @@ def compute_fibonocci(number=MAX_INT):
     return fibs
 
 if __name__ == '__main__':
-    print reduce(lambda x,y: x+y, filter(lambda x: x%2 == 0, compute_fibonocci()))
+    with Timer() as t:
+        print 'answer:', reduce(lambda x, y: x+y,
+                                filter(lambda x: x % 2 == 0,
+                                       compute_fibonocci()))
+    print 'Time taken:%.3f seconds' % t.interval
