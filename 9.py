@@ -9,20 +9,25 @@ a + b + c = 1000
 Find the product abc.
 '''
 
+from clock import Timer
+
+
 def main():
-  '''
-  After solving these two equations:
-  a2 + b2 = c2
-  a + b + c = 1000
-  It turned out that c's upper bound is 500, which means a,b will also be inside 500
-  '''
-  for c_item in range(1, 500):
-    for b_item in range(1, 500):
-      for a_item in range(1, 500):
-        if ((a_item * a_item) + (b_item * b_item) == (c_item * c_item)) and \
-          (a_item + b_item + c_item == 1000):
-          return (a_item, b_item, c_item)
+    '''
+    After solving these two equations:
+    a2 + b2 = c2
+    a + b + c = 1000
+    It turned out that c's upper bound is 500, which means a,b will also be inside 500
+    '''
+    for c_item in range(1, 500):
+        for b_item in range(1, 500):
+            a_item = 1000 - (b_item + c_item)
+            if a_item > 0:
+                if ((a_item * a_item) + (b_item * b_item) == (c_item * c_item)):
+                    return (a_item, b_item, c_item)
 
 if __name__ == '__main__':
-    (a, b, c) = main()
-    print a*b*c
+    with Timer() as t:
+        (a, b, c) = main()
+        print 'answer:', a*b*c
+    print 'Time taken:%.3f seconds' % t.interval
