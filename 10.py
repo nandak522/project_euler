@@ -11,16 +11,18 @@ BIG_NUMBER = 2000000
 
 
 def is_prime(number):
+    if number % 2 == 0:
+        return False
     max_possible_factor = int(number ** 0.5)
-    for i in range(2, max_possible_factor + 1):
+    for i in range(3, max_possible_factor + 1, 2):
         if number % i == 0:
             return False
     return True
 
 
 def summation_of_primes(big_number):
-    sum_of_primes = 0
-    lst = range(2, big_number)
+    sum_of_primes = 2
+    lst = range(3, big_number, 2)
     for number in lst:
         if is_prime(number):
             # print 'prime:', number
