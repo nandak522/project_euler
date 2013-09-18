@@ -12,12 +12,18 @@ Find the difference between the sum of the squares of the first one hundred
 natural numbers and the square of the sum.
 '''
 
+from clock import Timer
+
 MAX_INT = 100
+
 
 def compute_sum_numbers(n):
     return n*(n+1)/2
 
+
 def compute_sum_of_squares(n):
     return n*(n+1)*(2*n+1)/6
 
-print compute_sum_of_squares(MAX_INT)-(compute_sum_numbers(MAX_INT)**2)
+with Timer() as t:
+    print 'answer:', compute_sum_of_squares(MAX_INT) - (compute_sum_numbers(MAX_INT) ** 2)
+print 'Time taken:%.3f seconds' % t.interval
