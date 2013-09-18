@@ -25,4 +25,4 @@ def main():
 
 if __name__ == '__main__':
     (a, b, c) = main()
-    print a*b*c)
+    print a*b*c
