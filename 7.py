@@ -7,9 +7,25 @@ What is the 10001st prime number?
 
 from clock import Timer
 
+POINTER = 10001
+
+def is_prime(number):
+    max_possible_factor = int(number ** 0.5)
+    for i in range(2, max_possible_factor + 1):
+        if number % i == 0:
+            return False
+    return True
+
 
 def main():
-    pass
+    counter = 0
+    number = 2
+    while True:
+        if is_prime(number):
+            counter += 1
+            if counter == POINTER:
+                return number
+        number += 1
 
 
 if __name__ == '__main__':
