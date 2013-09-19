@@ -1,5 +1,5 @@
 '''
-In the 20×20 grid below, four numbers along a diagonal line have been marked
+In the 20x20 grid below, four numbers along a diagonal line have been marked
 in red.
 
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -22,10 +22,10 @@ in red.
 20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
-The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
+The product of these numbers is 26 x 63 x 78 x 14 = 1788696.
 
 What is the greatest product of four adjacent numbers in the same direction
-(up, down, left, right, or diagonally) in the 20×20 grid?
+(up, down, left, right, or diagonally) in the 20x20 grid?
 '''
 
 from clock import Timer
@@ -57,7 +57,11 @@ SEGMENT_LENGTH = 4
 
 
 def get_me_max_product(segments):
-    return max([reduce(lambda x, y: x+y, segment) for segment in segments])
+    try:
+        pass
+        return max([reduce(lambda x, y: int(x) + int(y), segment) for segment in segments])
+    except Exception, e:
+        raise e
 
 
 def _split_down_segments(sequence):
@@ -76,7 +80,18 @@ def _split_down_segments(sequence):
 
 
 def _split_up_segments(sequence):
-    raise NotImplementedError
+    segments = []
+    index = len(sequence) - 1
+    while (index-SEGMENT_LENGTH) > 0:
+        sub_sequence_set = sequence[index-SEGMENT_LENGTH+1:index+1]
+        total_len_sub_seq = len(sub_sequence_set[0])  # Assumption it is common
+        for i in range(total_len_sub_seq):
+            segment = []
+            for sub_sequence in sub_sequence_set:
+                segment.append(sub_sequence[i])
+            segments.append(segment)
+        index -= 1
+    return segments
 
 
 def _split_diagonal_segments(sequence):
